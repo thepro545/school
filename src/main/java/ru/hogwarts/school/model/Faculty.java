@@ -3,7 +3,7 @@ package ru.hogwarts.school.model;
 import java.util.Objects;
 
 public class Faculty {
-    private Long id;
+    private long id;
     private String name;
     private String color;
 
@@ -33,7 +33,7 @@ public class Faculty {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
