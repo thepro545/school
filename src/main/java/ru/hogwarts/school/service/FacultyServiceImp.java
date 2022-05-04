@@ -2,51 +2,48 @@ package ru.hogwarts.school.service;
 
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.repositories.FacultyRepository;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class FacultyServiceImp implements FacultyService{
-    private final HashMap<Long, Faculty> faculties = new HashMap<>();
-    private long genId = 0;
+public class FacultyServiceImp implements FacultyService {
+    private final FacultyRepository facultyRepository;
 
-    @Override
-    public Faculty createFaculty(Faculty faculty){
-        faculty.setId(++genId);
-        faculties.put(genId, faculty);
-        return faculty;
+    public FacultyServiceImp(FacultyRepository facultyRepository) {
+        this.facultyRepository = facultyRepository;
     }
 
     @Override
-    public Faculty getFaculty(long id){
-        return faculties.get(id);
+    public Faculty createFaculty(Faculty faculty) {
+        return facultyRepository.save(faculty);
     }
 
     @Override
-    public Faculty updateFaculty(Faculty faculty){
-        if(faculties.containsKey(faculty.getId())){
-            faculties.put(faculty.getId(), faculty);
-            return faculty;
-        }
-        return null;
+    public Faculty getFaculty(long id) {
+        return facultyRepository.findById(id).get();
     }
 
     @Override
-    public Faculty removeFaculty(long id){
-        return faculties.remove(id);
+    public Faculty updateFaculty(Faculty faculty) {
+        return facultyRepository.save(faculty);
+    }
+
+    @Override
+    public void removeFaculty(long id) {
+        facultyRepository.deleteById(id);
     }
 
     @Override
     public Collection<Faculty> getAll() {
-        return faculties.values();
+        return facultyRepository.findAll();
     }
 
     @Override
     public List<Faculty> getFacultyByColor(String color) {
-        return getAll().stream()
+        return facultyRepository.findAll().stream()
                 .filter(e -> e.getColor().equals(color))
                 .collect(Collectors.toList());
     }

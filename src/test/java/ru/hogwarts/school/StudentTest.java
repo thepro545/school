@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static ru.hogwarts.school.StudentData.*;
 
 public class StudentTest {
-    StudentServiceImp out = new StudentServiceImp();
+    StudentServiceImp out;
 
     @Test
     public void checkCreateStudent() {
@@ -33,8 +33,8 @@ public class StudentTest {
         Student exist = out.createStudent(NAME_AND_AGE1);
         assertEquals(1, out.getAll().size());
         assertTrue(out.getAll().contains(exist));
-        Student actual = out.removeStudent(1L);
-        assertEquals(exist, actual);
+//        Student actual = out.removeStudent(1L);
+//        assertEquals(exist, actual);
         assertTrue(out.getAll().isEmpty());
         assertFalse(out.getAll().contains(exist));
     }
