@@ -45,10 +45,14 @@ public class StudentController {
         studentService.removeStudent(id);
     }
 
-    @GetMapping
-    public ResponseEntity<Collection<Student>> getAllStudents() {
-        return ResponseEntity.ok(studentService.getAll());
-    }
+//    @GetMapping
+//    public ResponseEntity getAllStudents(@RequestParam(required = false) Integer min,
+//                                         @RequestParam(required = false) Integer max) {
+//        if (min != null && max != null) {
+//            return ResponseEntity.ok(studentService.findByAgeBetween(min, max));
+//        }
+//        return ResponseEntity.ok(studentService.getAll());
+//    }
 
     @GetMapping("filter/{age}")
     public ResponseEntity<List<Student>> getStudentByAge(@PathVariable int age) {
