@@ -45,13 +45,18 @@ public class FacultyController {
         facultyService.removeFaculty(id);
     }
 
-//    @GetMapping
-//    public ResponseEntity getAllFaculties(@RequestParam(required = false) String param) {
-//        if(param != null && !param.isBlank()){
-//            return ResponseEntity.ok(facultyService.findByColorOrName(param));
-//        }
-//        return ResponseEntity.ok(facultyService.getAll());
-//    }
+    @GetMapping
+    public ResponseEntity getAllFaculties(@RequestParam(required = false) String color,
+                                          @RequestParam(required = false) String name) {
+        if (color != null && !color.isBlank()) {
+            return ResponseEntity.ok(facultyService.findByColor(color));
+        }
+        if (name != null && !name.isBlank()){
+            return ResponseEntity.ok(facultyService.findByName(name));
+        }
+        return ResponseEntity.ok(facultyService.getAll());
+    }
+
 
     @GetMapping("filter/{color}")
     public ResponseEntity<List<Faculty>> getFacultyByColor(@PathVariable String color) {
