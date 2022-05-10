@@ -1,6 +1,7 @@
 package ru.hogwarts.school.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -16,7 +17,7 @@ public class Faculty {
     private String name;
     private String color;
 
-    @JsonIgnore
+    @JsonManagedReference
     @OneToMany(mappedBy = "faculty")
     private Set<Student> students;
 
