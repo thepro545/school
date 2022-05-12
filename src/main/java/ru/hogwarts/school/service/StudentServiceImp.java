@@ -24,7 +24,7 @@ public class StudentServiceImp implements StudentService {
 
     @Override
     public Student getStudent(long id) {
-        return  studentRepository.findById(id).get();
+        return studentRepository.findById(id).get();
     }
 
     @Override
@@ -47,5 +47,10 @@ public class StudentServiceImp implements StudentService {
         return studentRepository.findAll().stream()
                 .filter(e -> e.getAge() == age)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Collection<Student> findByAgeBetween(Integer min, Integer max) {
+        return studentRepository.findByAgeBetween(min, max);
     }
 }

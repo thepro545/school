@@ -1,6 +1,5 @@
 package ru.hogwarts.school.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.repositories.FacultyRepository;
@@ -48,5 +47,15 @@ public class FacultyServiceImp implements FacultyService {
         return facultyRepository.findAll().stream()
                 .filter(e -> e.getColor().equals(color))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Collection<Faculty> findByColor(String color){
+        return facultyRepository.findByColorIgnoreCase(color);
+    }
+
+    @Override
+    public Collection<Faculty> findByName(String name){
+        return facultyRepository.findByNameIgnoreCase(name);
     }
 }
