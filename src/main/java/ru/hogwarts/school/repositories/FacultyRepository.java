@@ -1,6 +1,5 @@
 package ru.hogwarts.school.repositories;
 
-import org.hibernate.mapping.Collection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import ru.hogwarts.school.model.Faculty;
 
