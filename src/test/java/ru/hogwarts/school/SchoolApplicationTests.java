@@ -49,7 +49,19 @@ class SchoolApplicationTests {
 		newStudent.setAge(100);
 
 		Assertions
-				.assertThat(this.restTemplate.postForObject("http://localhost:" + port + "/student", newStudent, String.class))
+				.assertThat(this.restTemplate.put("http://localhost:" + port + "/student", newStudent, String.class))
 				.isNotNull();
+	}
+
+	@Test
+	public void testRemoveStudent() throws Exception {
+		Student newStudent = new Student();
+		newStudent.setId(7L);
+		newStudent.setName("BobTest1");
+		newStudent.setAge(100);
+
+		Assertions
+				.assertThat(this.restTemplate.delete("http://localhost:" + port + "/student" + newStudent.getId()))
+				.isNull();
 	}
 }
