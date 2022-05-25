@@ -54,12 +54,12 @@ public class StudentServiceImp implements StudentService {
     }
 
     @Override
-    public List<Student> getAllStudentsSql(){
+    public int getAllStudentsSql(){
         return studentRepository.getAllStudentsSql();
     }
 
     @Override
-    public List<Student> getAvgAgeStudents(){
+    public float getAvgAgeStudents(){
         return studentRepository.getAvgAgeStudents();
     }
 

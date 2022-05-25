@@ -63,12 +63,12 @@ public class StudentController {
     }
 
     @GetMapping("sql/getAll")
-    public ResponseEntity<List<Student>> getAllStudentsSql() {
+    public ResponseEntity getAllStudentsSql() {
         return ResponseEntity.ok(studentService.getAllStudentsSql());
     }
 
     @GetMapping("sql/getAvg")
-    public ResponseEntity<List<Student>> getAvgAgeStudents() {
+    public ResponseEntity getAvgAgeStudents() {
         return ResponseEntity.ok(studentService.getAvgAgeStudents());
     }
 
