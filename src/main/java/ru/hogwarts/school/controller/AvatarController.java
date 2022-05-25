@@ -9,6 +9,7 @@ import ru.hogwarts.school.service.AvatarServiceImp;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.nio.file.*;
+import java.util.List;
 
 @RestController
 public class AvatarController {
@@ -48,5 +49,10 @@ public class AvatarController {
             response.setContentLength((int) avatar.getFileSize());
             is.transferTo(os);
         }
+    }
+
+    @GetMapping(value = "/{id}/avatarPerPage")
+    public ResponseEntity<List<Avatar>> getAvatarsPerPage(@RequestParam("page") Integer pageNumber, @RequestParam("size") Integer sizeNumber){
+        return ResponseEntity.ok(avatarService.getAllAvatars(pageNumber, sizeNumber));
     }
 }

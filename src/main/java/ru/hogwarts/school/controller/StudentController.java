@@ -61,4 +61,19 @@ public class StudentController {
     public ResponseEntity<List<Student>> getStudentByAge(@PathVariable int age) {
         return ResponseEntity.ok(studentService.getStudentByAge(age));
     }
+
+    @GetMapping("sql/getAll")
+    public ResponseEntity<List<Student>> getAllStudentsSql() {
+        return ResponseEntity.ok(studentService.getAllStudentsSql());
+    }
+
+    @GetMapping("sql/getAvg")
+    public ResponseEntity<List<Student>> getAvgAgeStudents() {
+        return ResponseEntity.ok(studentService.getAvgAgeStudents());
+    }
+
+    @GetMapping("sql/getLast5")
+    public ResponseEntity<List<Student>> getLast5Students() {
+        return ResponseEntity.ok(studentService.getLast5Students());
+    }
 }
