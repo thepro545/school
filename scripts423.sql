@@ -5,4 +5,4 @@
 
 SELECT s.name, s.age, f.name FROM student s JOIN faculty f on s.faculty_id = f.id;
 
-SELECT s.* from student s join avatar a on s.id = a.student_id where a.student_id IS NOT NULL;
+SELECT s.* from student s join avatar a on s.id = a.student_id;
