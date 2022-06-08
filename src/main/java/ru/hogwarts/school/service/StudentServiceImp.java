@@ -81,4 +81,24 @@ public class StudentServiceImp implements StudentService {
         logger.debug("getLast5Students method is in progress");
         return studentRepository.getLast5Students();
     }
+
+    @Override
+    public List<String> getAllNamesStartWithA(){
+        logger.debug("getAllNamesStartWithA method is in progress");
+        return studentRepository.findAll().stream()
+                .map(Student::getName)
+                .map(String::toUpperCase)
+                .filter((n -> n.startsWith("A")))
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public int getAvgAge(){
+        logger.debug("getAvgAge method is in progress");
+        return (int) studentRepository.findAll().stream()
+                .mapToInt(Student::getAge)
+                .average()
+                .orElse(0);
+    }
 }
