@@ -30,4 +30,8 @@ public interface StudentService {
     List<String> getAllNamesStartWithA();
 
     int getAvgAge();
+
+    void getNamesThread();
+
+    void getNamesSyncThread();
 }
