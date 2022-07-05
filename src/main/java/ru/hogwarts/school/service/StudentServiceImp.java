@@ -101,4 +101,52 @@ public class StudentServiceImp implements StudentService {
                 .average()
                 .orElse(0);
     }
+
+    @Override
+    public void getNamesThread(){
+        logger.debug("getNamesThread method is in progress");
+        doThread(1);
+        doThread(2);
+
+        new Thread(() -> {
+            doThread(3);
+            doThread(4);
+        }).start();
+
+        new Thread(() -> {
+            doThread(5);
+            doThread(6);
+        }).start();
+
+    }
+
+    public final Object flag = new Object();
+    @Override
+    public void getNamesSyncThread(){
+        logger.debug("getNamesSyncThread method is in progress");
+        doThreadSync(1);
+        doThreadSync(2);
+
+        new Thread(() -> {
+            doThreadSync(3);
+            doThreadSync(4);
+        }).start();
+
+        new Thread(() -> {
+            doThreadSync(5);
+            doThreadSync(6);
+        }).start();
+
+    }
+
+    private void doThread(long id){
+            System.out.println(studentRepository.getById(id).getName());
+    }
+
+    private void doThreadSync(long id){
+        synchronized (flag)
+        {
+            System.out.println(studentRepository.getById(id).getName());
+        }
+    }
 }
